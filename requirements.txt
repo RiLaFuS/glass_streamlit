@@ -2,3 +2,8 @@ streamlit
 numpy
 pandas
 scikit-learn
+matplotlib.pyplot
+optuna
+pickle
+requests
+Image
