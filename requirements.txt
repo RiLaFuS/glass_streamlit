@@ -2,8 +2,9 @@ streamlit
 numpy
 pandas
 scikit-learn
-matplotlib.pyplot
+matplotlib
 optuna
 pickle
 requests
-Image
+PIL
+pydantic
