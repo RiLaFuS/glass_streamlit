@@ -6,7 +6,7 @@ from PIL import Image
 
 
 st.title('ガラス工房へようこそ！')
-image = Image.open('C:\\Users\\ce264\\Desktop\\glass\\image.jpg')
+image = Image.open('C:/Users/ce264/Desktop/glass/image.jpg')
 st.image(image,use_column_width=True)
 
 st.header('本日はあなたのオリジナルガラスを制作してみましょう')
@@ -58,5 +58,5 @@ if st.sidebar.button("できあがり"):
     st.write('## あなたが制作するオリジナルガラス')
     st.write('それでは早速「',str(targets[int(prediction)]),'」をつくりましょう!')
 
-image2 = Image.open('C:\\Users\\ce264\\Desktop\\glass\\image2.jpg')
+image2 = Image.open('C:/Users/ce264/Desktop/glass/image2.jpg')
 st.image(image2,use_column_width=True)
