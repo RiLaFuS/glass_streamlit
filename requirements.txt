@@ -4,7 +4,4 @@ pandas
 scikit-learn
 matplotlib
 optuna
-pickle
-requests
-PIL
 pydantic
