@@ -6,3 +6,5 @@ matplotlib
 optuna
 pydantic
 Pillow
+pickle
+requests
