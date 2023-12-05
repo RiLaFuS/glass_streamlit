@@ -4,8 +4,9 @@ import requests
 import numpy
 from PIL import Image
 
-from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
 app = FastAPI()
 
 # CORS設定
