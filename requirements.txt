@@ -8,3 +8,4 @@ pydantic
 Pillow
 requests
 seaborn
+fastapi
