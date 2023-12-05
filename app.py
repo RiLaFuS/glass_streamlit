@@ -2,8 +2,22 @@ import streamlit as st
 import pandas as pd
 import requests
 import numpy
-
 from PIL import Image
+
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI
+app = FastAPI()
+
+# CORS設定
+origins = ["*"]  # すべてのオリジンからアクセスを許可
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 st.title('ガラス工房へようこそ！')
 
