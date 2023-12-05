@@ -48,7 +48,7 @@ if st.sidebar.button("できあがり"):
     st.write(glass_df)
 
     # 予測の実行
-    response = requests.post("http://localhost:8000/predict", json=glass)
+    response = requests.post("/predict", json=glass)
     prediction = response.json()["prediction"]
 
     # 予測結果の表示
