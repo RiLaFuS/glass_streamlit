@@ -7,8 +7,7 @@ from PIL import Image
 
 
 st.title('ガラス工房へようこそ！')
-image = Image.open('C:/Users/ce264/Desktop/glass/image.jpg')
-st.image(image,use_column_width=True)
+
 
 st.header('本日はあなたのオリジナルガラスを制作してみましょう')
 st.header('')
