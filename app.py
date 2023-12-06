@@ -32,6 +32,7 @@ st.header('')
 st.write('まずは、各酸化物含有量からあなたが作ろうとしているガラスの種類を調べます。')
 st.write('左の枠にある項目について各値を入力して、一番下の「できあがり」をクリックしてください。')
 
+st.sidebar.header('値を設定してください')
 RI = st.sidebar.slider('屈折率', min_value=1.50, max_value=1.55, step=0.01)
 Na = st.sidebar.slider('ナトリウム (g)', min_value=0, max_value=100, step=1)
 Mg = st.sidebar.slider('マグネシウム (g)', min_value=0, max_value=100, step=1)
