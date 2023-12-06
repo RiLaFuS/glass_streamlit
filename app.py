@@ -1,55 +1,7 @@
 import streamlit as st
 import pandas as pd
 import requests
-import numpy
 from PIL import Image
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
-from typing import List
-from sklearn.ensemble import RandomForestClassifier
-
-# インスタンス化
-app = FastAPI()
-
-# 入力するデータ型の定義
-class df(BaseModel):
-    RI: float
-    Na: float
-    Mg: float
-    Al: float
-    Si: float
-    K: float
-    Ca: float
-    Ba: float
-    Fe: float
-
-# モデルの構築
-def build_model():
-    df = pd.read_table('C:\\Users\\ce264\\Desktop\\glass\\train_glass.tsv', index_col=0)
-    features = pd.DataFrame(df[['RI', 'Na', 'Mg', 'Al', 'Si', 'K', 'Ca', 'Ba', 'Fe']], columns=df.columns.tolist()[:-1])
-    target = df['Type']
-
-    model = RandomForestClassifier()
-    model.fit(features, target)
-
-    return model
-
-# 学習済みのモデルの読み込み
-model = build_model()
-
-# /predict エンドポイントの処理
-@app.get('/')
-def index():
-    return {"Glass": 'df_prediction'}
-
-# POST が送信された時（入力）と予測値（出力）の定義
-@app.post('/predict')
-def make_predictions(features: df):
-    return {'prediction': str(model.predict([[features.RI, features.Na, features.Mg, features.Al, features.Si, features.K, features.Ca, features.Ba, features.Fe]])[0])}
-
-# Streamlit アプリケーション
-if st.button("Run Streamlit App"):
-    st.write("The app is running!")
 
 st.title('ガラス工房へようこそ！')
 
@@ -74,7 +26,7 @@ Ca = st.sidebar.slider('カルシウム (g)', min_value=0.0, max_value=100.0, st
 Ba = st.sidebar.slider('バリウム (g)', min_value=0.0, max_value=100.0, step=1.0)
 Fe = st.sidebar.slider('鉄 (g)', min_value=0.0, max_value=100.0, step=1.0)
 
-df = {
+glass = {
     "RI": RI,
     "Na": Na,
     "Mg": Mg,
@@ -91,12 +43,11 @@ targets = ['加工して使用する建築用ガラス', '未加工で使用す�
 if st.sidebar.button("できあがり"):
     # 入力された説明変数の表示
     st.write('## 入力値')
-    glass_df = pd.DataFrame(df, index=["原料一覧"])
+    glass_df = pd.DataFrame(glass, index=["原料一覧"])
     st.write(glass_df)
 
     # 予測の実行
-    response = requests.post("https://glassapp-kh9owc32nt34xnlifhbkgd.streamlit.app/predict", json=df)
-    print(response.text)
+    response = requests.post("http://localhost:8000/predict", json=glass)
     prediction = response.json()["prediction"]
 
     # 予測結果の表示
@@ -107,6 +58,8 @@ if st.sidebar.button("できあがり"):
     st.write('## あなたが制作するオリジナルガラス')
     st.write('それでは早速「',str(targets[int(prediction)]),'」をつくりましょう!')
 
-# image2 = Image.open('C:/Users/ce264/Desktop/glass/image2.jpg')
 image2 = Image.open('image2.jpg')
 st.image(image2,use_column_width=True)
+
+# streamlit run app.py & uvicorn main:app --reload
+# http://localhost:8000/predict"
