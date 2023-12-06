@@ -10,3 +10,4 @@ requests
 seaborn
 fastapi
 gunicorn
+uvicorn
