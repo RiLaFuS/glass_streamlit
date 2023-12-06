@@ -50,6 +50,7 @@ if st.sidebar.button("できあがり"):
 
     # 予測の実行
     response = requests.post("https://glassapp-kh9owc32nt34xnlifhbkgd.streamlit.app/predict", json=df)
+    print(response.text)
     prediction = response.json()["prediction"]
 
     # 予測結果の表示
