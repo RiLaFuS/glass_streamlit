@@ -34,14 +34,14 @@ st.write('左の枠にある項目について各値を入力して、一番下�
 
 st.sidebar.header('値を設定してください')
 RI = st.sidebar.slider('屈折率', min_value=1.50, max_value=1.55, step=0.01)
-Na = st.sidebar.slider('ナトリウム (g)', min_value=0, max_value=100, step=1)
-Mg = st.sidebar.slider('マグネシウム (g)', min_value=0, max_value=100, step=1)
-Al = st.sidebar.slider('アルミニウム (g)', min_value=0, max_value=100, step=1)
-Si = st.sidebar.slider('シリコン (g)', min_value=0, max_value=100, step=1)
-K = st.sidebar.slider('カリウム (g)', min_value=0, max_value=100, step=1)
-Ca = st.sidebar.slider('カルシウム (g)', min_value=0, max_value=100, step=1)
-Ba = st.sidebar.slider('バリウム (g)', min_value=0, max_value=100, step=1)
-Fe = st.sidebar.slider('鉄 (g)', min_value=0, max_value=100, step=1)
+Na = st.sidebar.slider('ナトリウム (g)', min_value=0.0, max_value=100.0, step=1.0)
+Mg = st.sidebar.slider('マグネシウム (g)', min_value=0.0, max_value=100.0, step=1.0)
+Al = st.sidebar.slider('アルミニウム (g)', min_value=0.0, max_value=100.0, step=1.0)
+Si = st.sidebar.slider('シリコン (g)', min_value=0.0, max_value=100.0, step=1.0)
+K = st.sidebar.slider('カリウム (g)', min_value=0.0, max_value=100.0, step=1.0)
+Ca = st.sidebar.slider('カルシウム (g)', min_value=0.0, max_value=100.0, step=1.0)
+Ba = st.sidebar.slider('バリウム (g)', min_value=0.0, max_value=100.0, step=1.0)
+Fe = st.sidebar.slider('鉄 (g)', min_value=0.0, max_value=100.0, step=1.0)
 
 glass = {
     "RI": RI,
