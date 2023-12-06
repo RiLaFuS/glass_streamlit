@@ -24,7 +24,7 @@ model = pickle.load(open('models/model_glass', 'rb'))
 # トップページ
 @app.get('/')
 def index():
-    return {"Type": 'glass_prediction'}
+    return {"Glass": 'glass_prediction'}
 
 # POST が送信された時（入力）と予測値（出力）の定義
 @app.post('/predict')

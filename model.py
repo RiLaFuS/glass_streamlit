@@ -7,6 +7,7 @@ df = pd.read_table('C:\\Users\\ce264\\Desktop\\glass\\train_glass.tsv', index_co
 df_test = pd.read_table('C:\\Users\\ce264\\Desktop\\glass\\test_glass.tsv', index_col=0)
 
 x = df.drop('Type', axis=1)
+features = pd.DataFrame(df[['RI', 'Na', 'Mg', 'Al', 'Si', 'K', 'Ca', 'Ba', 'Fe']], columns=df.columns.tolist()[:-1])
 t = df['Type']
 
 from sklearn.model_selection import train_test_split
