@@ -9,3 +9,4 @@ Pillow
 requests
 seaborn
 fastapi
+gunicorn
