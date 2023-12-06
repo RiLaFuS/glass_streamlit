@@ -47,7 +47,7 @@ if st.sidebar.button("できあがり"):
     st.write(glass_df)
 
     # 予測の実行
-    response = requests.post("https://glassapp-f6wya6x8trx4pnpzdwcyft.streamlit.app/predict", json=glass)
+    response = requests.post("https://gapp4.onrender.com/predict", json=glass)
     prediction = response.json()["prediction"]
 
     # 予測結果の表示
