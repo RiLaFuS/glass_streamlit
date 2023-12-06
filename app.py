@@ -20,6 +20,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.post("/predict")
+async def predict(glass: dict):
+    # ここで予測の処理を行い、結果を JSON 形式で返す
+    # 以下は例としてランダムに結果を生成する部分です。実際の予測処理に置き換えてください。
+    import random
+    prediction = {"prediction": random.choice([0, 1, 2, 3, 4, 5, 6, 7])}
+    return prediction
+
 st.title('ガラス工房へようこそ！')
 
 image = Image.open('image.jpg')
