@@ -4,29 +4,6 @@ import requests
 import numpy
 from PIL import Image
 
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-
-app = FastAPI()
-
-# CORS設定
-origins = ["*"]  # すべてのオリジンからアクセスを許可
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-@app.post("/predict")
-async def predict(glass: dict):
-    # ここで予測の処理を行い、結果を JSON 形式で返す
-    # 以下は例としてランダムに結果を生成する部分です。実際の予測処理に置き換えてください。
-    import random
-    prediction = {"prediction": random.choice([0, 1, 2, 3, 4, 5, 6, 7])}
-    return prediction
 
 st.title('ガラス工房へようこそ！')
 
@@ -51,7 +28,7 @@ Ca = st.sidebar.slider('カルシウム (g)', min_value=0.0, max_value=100.0, st
 Ba = st.sidebar.slider('バリウム (g)', min_value=0.0, max_value=100.0, step=1.0)
 Fe = st.sidebar.slider('鉄 (g)', min_value=0.0, max_value=100.0, step=1.0)
 
-glass = {
+df = {
     "RI": RI,
     "Na": Na,
     "Mg": Mg,
@@ -68,21 +45,12 @@ targets = ['加工して使用する建築用ガラス', '未加工で使用す�
 if st.sidebar.button("できあがり"):
     # 入力された説明変数の表示
     st.write('## 入力値')
-    glass_df = pd.DataFrame(glass, index=["原料一覧"])
+    glass_df = pd.DataFrame(df, index=["原料一覧"])
     st.write(glass_df)
 
     # 予測の実行
-    response = requests.post("https://glassapp-kh9owc32nt34xnlifhbkgd.streamlit.app/predict", json=glass)
-    
-    # レスポンスの表示
-    st.write('## レスポンス')
-    st.write(response.text)
-
-    # HTML 形式から JSON 形式に変換
-    try:
-        prediction = response.json()["prediction"]
-    except requests.exceptions.JSONDecodeError:
-        st.error("予測結果を取得できませんでした。")
+    response = requests.post("https://glassapp-kh9owc32nt34xnlifhbkgd.streamlit.app/predict", json=df)
+    prediction = response.json()["prediction"]
 
     # 予測結果の表示
     st.write('## できあがり')
