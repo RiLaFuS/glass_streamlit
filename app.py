@@ -74,6 +74,10 @@ if st.sidebar.button("できあがり"):
     # 予測の実行
     response = requests.post("https://glassapp-kh9owc32nt34xnlifhbkgd.streamlit.app/predict", json=glass)
     
+    # レスポンスの表示
+    st.write('## レスポンス')
+    st.write(response.text)
+
     # HTML 形式から JSON 形式に変換
     try:
         prediction = response.json()["prediction"]
